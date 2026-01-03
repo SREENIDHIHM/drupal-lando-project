@@ -9,6 +9,7 @@ libraries:
 regions:
   header: 'Header'
   secondary_menu_top: 'Secondary menu Top'
+  sidebar: 'Sidebar'
   primary_menu: 'Primary menu'
   pre_content: 'Pre-content'
   content: 'Content'
