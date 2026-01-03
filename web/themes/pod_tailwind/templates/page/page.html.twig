@@ -1,0 +1,114 @@
+{#
+/**
+ * @file
+ * Page template with comprehensive Tailwind CSS classes.
+ */
+#}
+<div class="min-h-screen flex flex-col bg-gray-50">
+
+{% if page.secondary_menu_top %}
+    <nav class="bg-gray-800 text-white shadow-sm" role="navigation" aria-label="Secondary menu top">
+      <div class="container mx-auto px-4 py-4">
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          {{ page.secondary_menu_top }}
+        </div>
+      </div>
+    </nav>
+  {% endif %}
+  {# Header Region - Sticky with shadow #}
+  <header class="sticky top-0 z-50 bg-white shadow-md border-b border-gray-800" role="banner">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-center py-8 space-y-4 md:space-y-0">
+        {{ page.header }}
+      </div>
+    </div>
+  </header>
+
+  {# Primary Menu Region - Grid layout #}
+{% if page.primary_menu %}
+  <nav class="sticky top-0 z-50 bg-gray-800 text-white shadow-sm" role="navigation" aria-label="Primary navigation">
+    <div class="container mx-auto px-4 py-4">
+      <div class="flex justify-center">
+        {{ page.primary_menu }}
+      </div>
+    </div>
+  </nav>
+{% endif %}
+
+  {# Messages Region #}
+  {% if page.messages %}
+    <div class="container mx-auto px-4 mt-4 mb-8">
+      {{ page.messages }}
+    </div>
+  {% endif %}
+
+  {# Skip to main content link - Screen reader optimized #}
+  <a id="main-content" tabindex="-1" class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:border focus:border-gray-800 focus:shadow-md">
+    {{ 'Skip to main content'|t }}
+  </a>
+
+  {# Main Content Area with flex-grow #}
+  <main class="flex-grow" role="main">
+    
+    {# Pre-content Region - Full width with grid #}
+    {% if page.pre_content %}
+      <section class="w-full bg-white border-t border-gray-800 py-8">
+        <div class="container mx-auto px-4">
+          <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            {{ page.pre_content }}
+          </div>
+        </div>
+      </section>
+    {% endif %}
+
+    {# Content Region - Flexible layout #}
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="flex flex-col lg:flex-row gap-8">
+        
+        {# Main content area - Takes 2/3 on large screens #}
+        <div class="lg:w-2/3 w-full">
+          <div class="bg-white shadow-md rounded-lg p-6">
+            {{ page.content }}
+          </div>
+        </div>
+        
+        {# Optional sidebar area - Takes 1/3 on large screens #}
+        {% if page.sidebar %}
+          <div class="lg:w-1/3 w-full">
+            <div class="bg-white shadow-sm border border-gray-800 rounded-lg p-6">
+              {{ page.sidebar }}
+            </div>
+          </div>
+        {% endif %}
+        
+      </div>
+    </div>
+
+  </main>
+
+  {# Footer Regions #}
+  <footer class="bg-gray-800 text-white border-t border-gray-800" role="contentinfo">
+    
+    {# Main Footer Region - Grid layout #}
+    {% if page.footer %}
+      <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {{ page.footer }}
+        </div>
+      </div>
+    {% endif %}
+
+    {# Footer Bottom Region - Flex row layout #}
+    {% if page.footer_bottom %}
+      <div class="bg-gray-900 py-4">
+        <div class="container mx-auto px-4">
+          <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 md:space-x-8">
+            {{ page.footer_bottom }}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+    
+  </footer>
+
+</div>

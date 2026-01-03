@@ -1,0 +1,34 @@
+{% if items %}
+  <ul{{ attributes.addClass([
+    'flex',
+    'flex-col',
+    'md:flex-row',
+    'items-center',
+    'justify-center',
+    'gap-6',
+    'md:gap-12'
+  ]) }}>
+    {% for item in items %}
+      {# Exact title match only #}
+      {% set is_home = item.title == 'Home' %}
+      
+      <li{{ item.attributes.addClass([
+        'menu-item',
+        'relative',
+        'group'
+      ]) }}>
+        <a href="{{ item.url }}" 
+           class="flex items-center text-white hover:text-blue-300 transition-colors duration-300 font-medium text-lg">
+          {# Add icon only for Home #}
+          {% if is_home %}
+            <svg class="w-5 h-5 mr-2 text-white animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+            </svg>
+          {% endif %}
+          <span>{{ item.title }}</span>
+        </a>
+        <div class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300"></div>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
